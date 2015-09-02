@@ -11,12 +11,12 @@ Example:
 ~~~~
  # in a bundle directory with a process that echos "hello" and exits 42
  $ funC start
- 
-## Stop
-
- ...
  hello
  
  $ echo $?
  42
 ~~~~
+
+## Stop
+
+ ...
