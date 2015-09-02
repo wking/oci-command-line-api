@@ -1,6 +1,6 @@
-Operations: 
+# Operations: 
 
-# Start
+## Start
 
 Starts a container from a bundle directory. 
 
@@ -11,6 +11,10 @@ Example:
 ~~~~
  # in a bundle directory with a process that echos "hello" and exits 42
  $ funC start
+ 
+## Stop
+
+ ...
  hello
  
  $ echo $?
