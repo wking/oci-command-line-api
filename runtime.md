@@ -52,6 +52,8 @@ Start a container from a bundle directory.
   * *`--id <ID>`* Set the container ID when creating or joining a container.
     If not set, the runtime is free to pick any ID that is not already in use.
   * *`--bundle <PATH>`* Override the path to the bundle directory (defaults to the current working directory).
+  * *`--state <PATH>`* The runtime MUST write the state JSON to this path (creating a new file or truncating a previous file as necessary).
+    The path may not support seeking (e.g. `/dev/fd/3`).
 * *Standard streams:* The runtime MUST attach its standard streams directly to the application process without inspection.
 * *Environment variables*
   * *`LISTEN_FDS`:* The number of file descriptors passed.
@@ -61,11 +63,18 @@ Start a container from a bundle directory.
 Example:
 ```sh
 # in a bundle directory with a process that echos "hello" and exits 42
-$ funC start --id hello-1
+$ funC start --id hello-1 --state hello.json
 hello
 
 $ echo $?
 42
+$ cat hello.json
+{
+  "version": "0.1.0",
+  "id": "hello-1",
+  "pid": 4422,
+  "root": "/var/lib/oci/hello"
+}
 ```
 
 [posix-encoding]: http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap06.html#tag_06_02
